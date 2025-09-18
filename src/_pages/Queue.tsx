@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useQuery } from "react-query"
+import ReactMarkdown from 'react-markdown'
 import ScreenshotQueue from "../components/Queue/ScreenshotQueue"
 import {
   Toast,
@@ -253,7 +254,7 @@ const Queue: React.FC<QueueProps> = ({ setView }) => {
           {/* Conditional Chat Interface */}
           {isChatOpen && (
             <div className="mt-4 w-full mx-auto liquid-glass chat-container p-4 flex flex-col">
-            <div className="flex-1 overflow-y-auto mb-3 p-3 rounded-lg bg-white/10 backdrop-blur-md max-h-64 min-h-[120px] glass-content border border-white/20 shadow-lg">
+            <div className="flex-1 overflow-y-auto mb-3 p-3 rounded-lg bg-white/10 backdrop-blur-md max-h-64 min-h-[200px] glass-content border border-white/20 shadow-lg">
               {chatMessages.length === 0 ? (
                 <div className="text-sm text-gray-600 text-center mt-8">
                   💬 Chat with {currentModel.provider === "ollama" ? "🏠" : "☁️"} {currentModel.model}
@@ -276,7 +277,7 @@ const Queue: React.FC<QueueProps> = ({ setView }) => {
                       }`}
                       style={{ wordBreak: "break-word", lineHeight: "1.4" }}
                     >
-                      {msg.text}
+                      <ReactMarkdown>{msg.text}</ReactMarkdown>
                     </div>
                   </div>
                 ))
